@@ -1,0 +1,28 @@
+-- ---------------------------------------------------
+-- Problem ID   : 570
+-- Title        : Managers with at Least 5 Direct Reports
+-- Difficulty   : Medium
+-- Platform     : LeetCode
+-- Link         : https://leetcode.com/problems/managers-with-at-least-5-direct-reports/
+-- Pattern      : Self Join + GROUP BY + HAVING
+-- Concepts     : Hierarchical Data, Aggregation
+-- ---------------------------------------------------
+
+-- Problem:
+-- Find managers who have at least five direct reports.
+
+-- Approach:
+-- Join Employee table with itself:
+-- e1 = employees
+-- e2 = managers
+-- Match employee.managerId = manager.id
+-- Count employees under each manager
+-- Keep only managers with count >= 5
+
+SELECT
+    e2.name
+FROM Employee e1
+JOIN Employee e2
+    ON e1.managerId = e2.id
+GROUP BY e1.managerId, e2.name
+HAVING COUNT(*) >= 5;
