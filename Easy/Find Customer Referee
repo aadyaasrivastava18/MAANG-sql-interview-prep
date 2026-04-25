@@ -1,0 +1,24 @@
+-- ---------------------------------------------------
+-- Problem ID   : 584
+-- Title        : Find Customer Referee
+-- Difficulty   : Easy
+-- Platform     : LeetCode
+-- Link         : https://leetcode.com/problems/find-customer-referee/
+-- Pattern      : WHERE Filter + NULL Handling
+-- Concepts     : Conditional Logic, NULL Values
+-- ---------------------------------------------------
+
+-- Problem:
+-- Find customer names who are:
+-- 1. Referred by someone whose id is not 2
+-- 2. Not referred by anyone
+
+-- Approach:
+-- Exclude rows where referee_id = 2
+-- Include rows where referee_id IS NULL
+
+SELECT
+    name
+FROM Customer
+WHERE referee_id != 2
+   OR referee_id IS NULL;
